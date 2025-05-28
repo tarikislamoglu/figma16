@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div className="flex items-center justify-center min-h-screen max-w-full bg-[#E8F3FC] relative">
       <img
-        src="/Mask Group1.png"
+        src="/Mask group1.png"
         alt=""
         className="w-5/6 h-screen absolute left-0"
       />

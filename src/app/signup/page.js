@@ -1,0 +1,159 @@
+"use client";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { FaUserAlt, FaEye, FaEyeSlash, FaPhoneAlt } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { IoMdMail } from "react-icons/io";
+
+const SignUp = () => {
+  const [userName, setUserName] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const isExisting = users.some((u) => u.userName === userName);
+    if (isExisting) {
+      alert("Bu kullanıcı adı zaten mevcut.");
+      router.push("/");
+      return;
+    }
+
+    const newUser = {
+      userName,
+      emailAddress,
+      password,
+      phoneNumber,
+      id: crypto.randomUUID(),
+    };
+    localStorage.setItem("users", JSON.stringify([...users, newUser]));
+
+    setUserName("");
+    setEmailAddress("");
+    setPhoneNumber("");
+    setPassword("");
+    setIsChecked(false);
+
+    router.push("/");
+  };
+
+  return (
+    <div className="flex justify-center items-center min-h-screen max-w-full relative">
+      <img
+        src="/Mask group2.png"
+        alt=""
+        className="bottom-0 absolute h-5/6 w-full"
+      />
+      <div className="flex items-center absolute top-0 left-5 space-x-2">
+        <img src="logo.png" className="w-12 h-12" />
+        <h1 className="font-bold text-[55px]  bg-gradient-to-r from-[#807DFF] via-[#5C4687] to-[#00FFA3] bg-clip-text text-transparent ">
+          EcoGuard
+        </h1>
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col p-8 lg:w-1/3 md:1/2 w-2/3 space-y-5 justify-center absolute bg-[#434343E5] text-white opacity-90 rounded-md"
+      >
+        <h2 className="font-bold text-[37px] ">Sign Up</h2>
+        <div className="relative">
+          <span>
+            <FaUserAlt className="absolute top-2 left-2 pointer-events-none" />
+          </span>
+          <input
+            type="text"
+            placeholder="Username"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+            required
+            className=" border-2 rounded-md px-7 py-1 w-full"
+          />
+        </div>
+        <div className="relative">
+          <span>
+            <IoMdMail className=" absolute top-2 left-2 pointer-events-none" />
+          </span>
+          <input
+            type="email"
+            placeholder="Email"
+            value={emailAddress}
+            onChange={(e) => setEmailAddress(e.target.value)}
+            required
+            className=" border-2 rounded-md px-7 py-1 w-full"
+          />
+        </div>
+        <div className="relative">
+          <span>
+            <FaPhoneAlt className=" absolute top-2 left-2 pointer-events-none" />
+          </span>
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+            className="border-2 rounded-md px-7 py-1 w-full"
+          />
+        </div>
+        <div className="relative w-full">
+          <span>
+            <RiLockPasswordFill className="  absolute top-2 left-2 pointer-events-none" />
+          </span>
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className=" border-2  rounded-md px-7 py-1 w-full"
+          />
+          <span>
+            {showPassword ? (
+              <FaEye
+                className=" absolute top-2 right-2 cursor-pointer"
+                onClick={() => setShowPassword(false)}
+              />
+            ) : (
+              <FaEyeSlash
+                className="  absolute top-2 right-2 cursor-pointer"
+                onClick={() => setShowPassword(true)}
+              />
+            )}
+          </span>
+        </div>
+        <div className="">
+          <input
+            type="checkbox"
+            className="mr-2"
+            required
+            checked={isChecked}
+            onChange={() => setIsChecked((prev) => !prev)}
+          />
+          <span className="text-[16px]">
+            I agree
+            <span className="font-bold">
+              <a href="#">Terms and Conditions & Private Policy </a>
+            </span>
+            by Signing in
+          </span>
+        </div>
+        <div className="flex flex-col space-y-5 px-4 pt-16">
+          <button
+            type="submit"
+            className="bg-white text-[#0068C8] font-bold text-[27px] rounded-md p-0.5 cursor-pointer"
+          >
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default SignUp;

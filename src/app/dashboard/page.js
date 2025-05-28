@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineBedroomParent, MdAir } from "react-icons/md";
 import {
@@ -22,6 +22,7 @@ import StatCard from "@/components/StatCard";
 import DynamicChart from "@/components/chart";
 
 const Dashboard = () => {
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
   return (
     <div className="flex flex-col md:flex-row w-full bg-[#E8F3FC] min-h-screen ">
       <aside className="flex flex-col items-center py-5 justify-between space-y-5 m-4 md:w-1/6 bg-white rounded-xl text-[#6C7894] md:h-screen">
@@ -30,8 +31,15 @@ const Dashboard = () => {
           <h2 className="text-black">Namık Korona</h2>
         </div>
         <div className="space-y-5">
-          <h2 className="text-[#405D9F]">Menu</h2>
-          <ul className="space-y-3 hidden md:block">
+          <h2
+            className="text-[#405D9F] cursor-pointer md:cursor-none"
+            onClick={() => setIsOpenMenu((prev) => !prev)}
+          >
+            Menu
+          </h2>
+          <ul
+            className={`space-y-3 md:block ${isOpenMenu ? "block" : "hidden"} `}
+          >
             <li className="flex items-center space-x-2">
               <CiHome />
               <Link href="/dashboard">Dashboard</Link>

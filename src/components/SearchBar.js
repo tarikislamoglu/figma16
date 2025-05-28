@@ -3,7 +3,7 @@ import { IoNotificationsOutline } from "react-icons/io5";
 import { CiCircleQuestion, CiSearch } from "react-icons/ci";
 const SearchBar = ({ page }) => {
   return (
-    <div className="flex flex-col items-center space-y-5 md:flex-row md:justify-between p-4  ">
+    <div className="flex flex-col items-center sm:space-y-0 space-y-5 sm:flex-row sm:justify-between p-4  ">
       <h2>{page}</h2>
       <div className="relative">
         <input

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FaUserAlt, FaEye, FaEyeSlash, FaPhoneAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { IoMdMail } from "react-icons/io";
+import { useAuth } from "@/app/context/AuthContext";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
@@ -14,7 +15,7 @@ const SignUp = () => {
   const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-
+  const { login } = useAuth();
   const handleSubmit = (e) => {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -34,6 +35,9 @@ const SignUp = () => {
       id: crypto.randomUUID(),
     };
     localStorage.setItem("users", JSON.stringify([...users, newUser]));
+
+    login(newUser); // Oturum aç
+    alert("Kayıt başarılı!");
 
     setUserName("");
     setEmailAddress("");

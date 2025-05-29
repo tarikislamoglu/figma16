@@ -5,7 +5,7 @@ import SideBar from "@/components/SideBar";
 import React from "react";
 
 const Profile = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, isDark } = useAuth();
   const { userName, emailAddress, password, phoneNumber, id } = currentUser;
   const InfoRow = ({ label, value }) => (
     <div className="flex justify-between border-b pb-2">
@@ -14,7 +14,11 @@ const Profile = () => {
     </div>
   );
   return (
-    <div className="flex flex-col md:flex-row w-full bg-[#E8F3FC] min-h-screen ">
+    <div
+      className={`flex flex-col md:flex-row w-full  min-h-screen ${
+        isDark ? "bg-gray-700 " : "bg-[#E8F3FC] "
+      }`}
+    >
       <SideBar />
       <div className="md:w-5/6">
         <SearchBar page={"Profile"} />

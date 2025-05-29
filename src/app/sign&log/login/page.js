@@ -39,7 +39,7 @@ export default function Login() {
       <img
         src="/Mask group1.png"
         alt=""
-        className="w-5/6 h-screen absolute left-0"
+        className="w-5/6 h-full absolute left-0"
       />
       <div className="flex items-center absolute top-0 left-5 space-x-2 ">
         <img src="logo.png" className="w-12 h-12" />
@@ -47,7 +47,7 @@ export default function Login() {
           EcoGuard
         </h1>
       </div>
-      <div className="flex flex-col px-6 py-6 lg:w-1/3 md:w-1/2 w-2/3 justify-center space-y-5 bg-[#434343E5] absolute opacity-90 text-white rounded-md ">
+      <div className="flex flex-col p-6 lg:w-1/3 md:w-1/2 w-2/3 justify-center items-center space-y-5 bg-[#434343E5] opacity-90 text-white rounded-md relative ">
         <form className="space-y-5" onSubmit={handleLogin}>
           <img
             src="login.png"
@@ -106,18 +106,16 @@ export default function Login() {
               by Signing in
             </span>
           </div>
-          <div className="flex flex-col space-y-5 px-4 pt-16">
-            <button
-              type="submit"
-              className="bg-white text-[#0068C8] font-bold text-[27px] rounded-md p-0.5 cursor-pointer"
-            >
-              Log In
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="bg-white text-[#0068C8] font-bold text-[27px] rounded-md p-0.5 cursor-pointer w-full"
+          >
+            Log In
+          </button>
         </form>
         <button
-          className="font-bold text-[27px] rounded-md border-white border-2 cursor-pointer mx-4"
-          onClick={() => router.push("/signup")}
+          className="font-bold text-[27px] rounded-md border-white border-2 cursor-pointer w-full  "
+          onClick={() => router.push("/sign&log/signup")}
         >
           Sign Up
         </button>

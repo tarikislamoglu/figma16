@@ -11,6 +11,7 @@ import DynamicChart from "@/components/chart";
 import SideBar from "@/components/SideBar";
 import ProgressBar from "@/components/ProgressBar";
 import SearchBar from "@/components/SearchBar";
+import { useAuth } from "@/app/context/AuthContext";
 
 const Dashboard = () => {
   const [isOpenAQI, setIsOpenAQI] = useState(false);
@@ -21,9 +22,13 @@ const Dashboard = () => {
     { room: "Backyard", state: "Average" },
     { room: "Living Room", state: "Good" },
   ];
-
+  const { isDark } = useAuth();
   return (
-    <div className="flex flex-col md:flex-row w-full bg-[#E8F3FC] min-h-screen ">
+    <div
+      className={`flex flex-col md:flex-row w-full  min-h-screen ${
+        isDark ? "bg-gray-700 " : "bg-[#E8F3FC] "
+      }`}
+    >
       <SideBar />
       <div className="md:w-5/6 ">
         <SearchBar page={"Dashboard"} />

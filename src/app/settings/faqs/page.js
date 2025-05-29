@@ -1,33 +1,37 @@
 "use client";
+import { useAuth } from "@/app/context/AuthContext";
 import SearchBar from "@/components/SearchBar";
 import SideBar from "@/components/SideBar";
 import React, { useState } from "react";
 
-const faqs = [
-  {
-    question: "EcoGuard nedir?",
-    answer: "EcoGuard, çevre dostu çözümler sunan bir platformdur.",
-  },
-  {
-    question: "Hangi hizmetleri sunuyorsunuz?",
-    answer:
-      "Enerji tasarrufu, geri dönüşüm ve çevre danışmanlığı hizmetleri sunuyoruz.",
-  },
-  {
-    question: "Hangi ülkelerde hizmet veriyorsunuz?",
-    answer: "Şu anda Türkiye ve Avrupa'da hizmet vermekteyiz.",
-  },
-];
-
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
-
+  const faqs = [
+    {
+      question: "EcoGuard nedir?",
+      answer: "EcoGuard, çevre dostu çözümler sunan bir platformdur.",
+    },
+    {
+      question: "Hangi hizmetleri sunuyorsunuz?",
+      answer:
+        "Enerji tasarrufu, geri dönüşüm ve çevre danışmanlığı hizmetleri sunuyoruz.",
+    },
+    {
+      question: "Hangi ülkelerde hizmet veriyorsunuz?",
+      answer: "Şu anda Türkiye ve Avrupa'da hizmet vermekteyiz.",
+    },
+  ];
+  const { isDark } = useAuth();
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
-    <div className="flex flex-col md:flex-row w-full bg-[#E8F3FC] min-h-screen ">
+    <div
+      className={`flex flex-col md:flex-row w-full  min-h-screen ${
+        isDark ? "bg-gray-700 " : "bg-[#E8F3FC] "
+      }`}
+    >
       <SideBar />
       <div className="md:w-5/6">
         <SearchBar page={"FAQ's"} />

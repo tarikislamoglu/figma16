@@ -68,7 +68,7 @@ const SideBar = () => {
 
   return (
     <>
-      <aside className="flex md:flex-col items-center md:py-5 p-3 justify-between md:space-y-5 m-4 md:w-1/6 bg-white rounded-xl text-[#6C7894] md:h-screen">
+      <aside className="flex md:flex-col items-center md:py-5 p-3 justify-between md:space-y-5 m-4 md:w-1/6 bg-white rounded-xl text-[#6C7894] md:h-screen overflow-y-auto">
         <div className="flex justify-center items-center  space-x-1">
           <img src="/avatar.jpg" className="w-12 h-12 rounded-md" />
           <h2 className="text-black">{currentUser?.userName}</h2>

@@ -52,7 +52,7 @@ const SignUp = () => {
         className="bottom-0 absolute h-5/6 w-full"
       />
       <div className="flex items-center absolute top-0 left-5 space-x-2">
-        <img src="logo.png" className="w-12 h-12" />
+        <img src="/logo.png" className="w-12 h-12" />
         <h1 className="font-bold text-[55px]  bg-gradient-to-r from-[#807DFF] via-[#5C4687] to-[#00FFA3] bg-clip-text text-transparent ">
           EcoGuard
         </h1>

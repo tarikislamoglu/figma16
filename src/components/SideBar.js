@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   CiHome,
   CiMail,
@@ -12,21 +13,23 @@ import {
 import { PiPhoneCallLight } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
 import { AiOutlineRobot } from "react-icons/ai";
+import { useAuth } from "@/app/context/AuthContext";
 
 const SideBar = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [isOpenSettings, setIsOpenSettings] = useState(false);
-
+  const { currentUser, logout } = useAuth();
+  const router = useRouter();
   const MenuList = ({ className }) => {
     return (
       <ul className={className}>
         <li className="flex items-center space-x-2">
           <CiHome />
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/menu/dashboard">Dashboard</Link>
         </li>
         <li className="flex items-center space-x-2">
           <CiMail />
-          <Link href="/messages">Messages (2)</Link>
+          <Link href="/menu/messages">Messages (2)</Link>
         </li>
       </ul>
     );
@@ -37,30 +40,38 @@ const SideBar = () => {
       <ul className={className}>
         <li className="flex items-center space-x-2">
           <CiUser />
-          <Link href="#">Profile</Link>
+          <Link href="/settings/profile">Profile</Link>
         </li>
         <li className="flex items-center space-x-2">
           <CiCircleInfo />
-          <Link href="#">FAQ's</Link>
+          <Link href="/settings/faqs">FAQ's</Link>
         </li>
         <li className="flex items-center space-x-2">
           <PiPhoneCallLight />
-          <Link href="#">Contact Us</Link>
+          <Link href="/settings/contactus">Contact Us</Link>
         </li>
         <li className="flex items-center space-x-2">
           <IoIosLogOut />
-          <Link href="#">Logout</Link>
+          <Link href="/" onClick={() => logout()}>
+            Logout
+          </Link>
         </li>
       </ul>
     );
   };
+
+  useEffect(() => {
+    if (!currentUser) {
+      router.push("/");
+    }
+  }, [currentUser, router]);
 
   return (
     <>
       <aside className="flex md:flex-col items-center md:py-5 p-3 justify-between md:space-y-5 m-4 md:w-1/6 bg-white rounded-xl text-[#6C7894] md:h-screen">
         <div className="flex justify-center items-center  space-x-1">
           <img src="/avatar.jpg" className="w-12 h-12 rounded-md" />
-          <h2 className="text-black">Namık Korona</h2>
+          <h2 className="text-black">{currentUser?.userName}</h2>
         </div>
         <div className=" md:space-y-5 ">
           <h2
@@ -91,7 +102,7 @@ const SideBar = () => {
 
         <div className="md:flex flex-col hidden items-center space-y-5 justify-between w-full">
           <div className="flex items-center justify-center space-x-2 w-1/2 md:w-full">
-            <img src="logo.png" className="w-6 h-6" />
+            <img src="/logo.png" className="w-6 h-6" />
             <h1 className="font-bold bg-gradient-to-r from-[#807DFF] via-[#5C4687] to-[#00FFA3] bg-clip-text text-transparent ">
               EcoGuard
             </h1>

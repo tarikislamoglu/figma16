@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-import { MdOutlineBedroomParent, MdAir } from "react-icons/md";
 
+import { MdOutlineBedroomParent, MdAir } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { FaWater } from "react-icons/fa";
 
-import ProgressBar from "@/components/ProgressBar";
 import StatCard from "@/components/StatCard";
 import DynamicChart from "@/components/chart";
-import SearchBar from "@/components/SearchBar";
 import SideBar from "@/components/SideBar";
+import ProgressBar from "@/components/ProgressBar";
+import SearchBar from "@/components/SearchBar";
 
 const Dashboard = () => {
   const [isOpenAQI, setIsOpenAQI] = useState(false);

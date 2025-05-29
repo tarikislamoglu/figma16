@@ -36,7 +36,7 @@ const SignUp = () => {
     };
     localStorage.setItem("users", JSON.stringify([...users, newUser]));
 
-    login(newUser); // Oturum aç
+    login(newUser);
     alert("Kayıt başarılı!");
 
     setUserName("");
@@ -45,7 +45,7 @@ const SignUp = () => {
     setPassword("");
     setIsChecked(false);
 
-    router.push("/");
+    router.push("/menu/dashboard");
   };
 
   return (

@@ -22,6 +22,11 @@ const Dashboard = () => {
     { room: "Backyard", state: "Average" },
     { room: "Living Room", state: "Good" },
   ];
+  const compounds = [
+    { name: "Benzene", amount: "50%", status: "Bad" },
+    { name: "Toulene", amount: "30%", status: "Average" },
+    { name: "Gas 3", amount: "20%", status: "Good" },
+  ];
   const { isDark } = useAuth();
   return (
     <div
@@ -150,8 +155,8 @@ const Dashboard = () => {
                     (volatile organic compounds)
                   </span>
                 </h2>
-                <div className="flex  items-center justify-center">
-                  <div className="w-1/3 mx-auto">
+                <div className="flex items-center justify-center">
+                  <div className="w-1/3">
                     <DynamicChart
                       type="doughnut"
                       labels={[50, 30, 20]}
@@ -166,21 +171,13 @@ const Dashboard = () => {
                         <span className="w-2/5 ">Amt </span>
                         <span className="w-1/5"> </span>
                       </li>
-                      <li className="flex  text-xs">
-                        <span className="w-2/5">Benzene</span>
-                        <span className="w-2/5">50% </span>
-                        <span className="w-1/5"> Bad</span>
-                      </li>
-                      <li className="flex  text-xs">
-                        <span className="w-2/5">Toulene</span>
-                        <span className="w-2/5">30% </span>
-                        <span className="w-1/5"> Average</span>
-                      </li>
-                      <li className="flex text-xs">
-                        <span className="w-2/5">Gas 3</span>
-                        <span className="w-2/5">20% </span>
-                        <span className="w-1/5"> Good</span>
-                      </li>
+                      {compounds.map((item, idx) => (
+                        <li key={idx} className="flex text-xs">
+                          <span className="w-2/5">{item.name}</span>
+                          <span className="w-2/5">{item.amount}</span>
+                          <span className="w-1/5">{item.status}</span>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>

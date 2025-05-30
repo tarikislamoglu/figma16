@@ -11,6 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
   const router = useRouter();
   const { login } = useAuth();
 
@@ -22,13 +23,17 @@ export default function Login() {
     const matchedUser = users.find(
       (u) => u.userName === userName && u.password === password
     );
+    if (!isChecked) {
+      setError("Şartları ve gizlilik politikasını kabul etmelisiniz.");
+      return;
+    }
 
-    if (matchedUser) {
+    if (matchedUser && isChecked) {
       login(matchedUser);
       alert("Giriş başarılı!");
       router.push("/menu/dashboard");
     } else {
-      alert("Kullanıcı adı veya şifre hatalı.");
+      setError("Kullanıcı adı veya şifre hatalı.");
     }
     setUserName("");
     setPassword("");
@@ -106,6 +111,7 @@ export default function Login() {
               by Signing in
             </span>
           </div>
+          {error && <p className="text-red-500 ">{error}</p>}
           <button
             type="submit"
             className="bg-white text-[#0068C8] font-bold text-[27px] rounded-md p-0.5 cursor-pointer w-full"

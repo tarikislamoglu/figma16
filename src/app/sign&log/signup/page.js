@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { FaUserAlt, FaEye, FaEyeSlash, FaPhoneAlt } from "react-icons/fa";
@@ -13,6 +13,8 @@ const SignUp = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const [error, setError] = useState(null);
+  const userNameRef = useRef();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
@@ -22,8 +24,9 @@ const SignUp = () => {
 
     const isExisting = users.some((u) => u.userName === userName);
     if (isExisting) {
-      alert("Bu kullanıcı adı zaten mevcut.");
-      router.push("/");
+      setError("Bu kullanıcı adı zaten mevcut.");
+      setUserName("");
+      userNameRef.current.focus();
       return;
     }
 
@@ -76,6 +79,7 @@ const SignUp = () => {
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             required
+            ref={userNameRef}
             className=" border-2 rounded-md px-7 py-1 w-full"
           />
         </div>
@@ -155,6 +159,7 @@ const SignUp = () => {
             Sign Up
           </button>
         </div>
+        {error && <p className="text-red-500">{error}</p>}
       </form>
     </div>
   );

@@ -34,8 +34,7 @@ export default function ContactUs() {
       <SideBar />
       <div className="md:w-5/6 ">
         <SearchBar page={"Contact Us"} />
-        <div className="   bg-white rounded-lg flex flex-col justify-center items-center space-y-5 m-10 p-6">
-          {" "}
+        <div className="   bg-white rounded-lg flex flex-col justify-center items-center space-y-5 m-10 p-6 ">
           <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
             Bize Ulaşın
           </h2>

@@ -17,24 +17,26 @@ export default function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setError(null);
+
+    if (!isChecked) {
+      return setError("Şartları ve gizlilik politikasını kabul etmelisiniz.");
+    }
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
     const matchedUser = users.find(
       (u) => u.userName === userName && u.password === password
     );
-    if (!isChecked) {
-      setError("Şartları ve gizlilik politikasını kabul etmelisiniz.");
-      return;
+
+    if (!matchedUser) {
+      return setError("Kullanıcı adı veya şifre hatalı.");
     }
 
-    if (matchedUser && isChecked) {
-      login(matchedUser);
-      alert("Giriş başarılı!");
-      router.push("/menu/dashboard");
-    } else {
-      setError("Kullanıcı adı veya şifre hatalı.");
-    }
+    login(matchedUser);
+    alert("Giriş başarılı!");
+    router.push("/menu/dashboard");
+
     setUserName("");
     setPassword("");
     setIsChecked(false);

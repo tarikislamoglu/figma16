@@ -1,11 +1,11 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context/AuthContext";
 
 import { FaUserAlt, FaEye, FaEyeSlash, FaPhoneAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { IoMdMail } from "react-icons/io";
-import { useAuth } from "@/app/context/AuthContext";
 
 const SignUp = () => {
   const [userName, setUserName] = useState("");
@@ -14,10 +14,12 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+
   const userNameRef = useRef();
   const router = useRouter();
-  const [showPassword, setShowPassword] = useState(false);
   const { login } = useAuth();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -70,9 +72,8 @@ const SignUp = () => {
       >
         <h2 className="font-bold text-[37px] ">Sign Up</h2>
         <div className="relative">
-          <span>
-            <FaUserAlt className="absolute top-2 left-2 pointer-events-none" />
-          </span>
+          <FaUserAlt className="absolute top-2 left-2 pointer-events-none" />
+
           <input
             type="text"
             placeholder="Username"
@@ -84,9 +85,8 @@ const SignUp = () => {
           />
         </div>
         <div className="relative">
-          <span>
-            <IoMdMail className=" absolute top-2 left-2 pointer-events-none" />
-          </span>
+          <IoMdMail className=" absolute top-2 left-2 pointer-events-none" />
+
           <input
             type="email"
             placeholder="Email"
@@ -97,9 +97,8 @@ const SignUp = () => {
           />
         </div>
         <div className="relative">
-          <span>
-            <FaPhoneAlt className=" absolute top-2 left-2 pointer-events-none" />
-          </span>
+          <FaPhoneAlt className=" absolute top-2 left-2 pointer-events-none" />
+
           <input
             type="tel"
             placeholder="Phone Number"
@@ -110,9 +109,7 @@ const SignUp = () => {
           />
         </div>
         <div className="relative w-full">
-          <span>
-            <RiLockPasswordFill className="  absolute top-2 left-2 pointer-events-none" />
-          </span>
+          <RiLockPasswordFill className="  absolute top-2 left-2 pointer-events-none" />
           <input
             type={showPassword ? "text" : "password"}
             placeholder="Password"
@@ -121,19 +118,18 @@ const SignUp = () => {
             required
             className=" border-2  rounded-md px-7 py-1 w-full"
           />
-          <span>
-            {showPassword ? (
-              <FaEye
-                className=" absolute top-2 right-2 cursor-pointer"
-                onClick={() => setShowPassword(false)}
-              />
-            ) : (
-              <FaEyeSlash
-                className="  absolute top-2 right-2 cursor-pointer"
-                onClick={() => setShowPassword(true)}
-              />
-            )}
-          </span>
+
+          {showPassword ? (
+            <FaEye
+              className=" absolute top-2 right-2 cursor-pointer"
+              onClick={() => setShowPassword(false)}
+            />
+          ) : (
+            <FaEyeSlash
+              className="  absolute top-2 right-2 cursor-pointer"
+              onClick={() => setShowPassword(true)}
+            />
+          )}
         </div>
         <div className="">
           <input
@@ -145,9 +141,9 @@ const SignUp = () => {
           />
           <span className="text-[16px]">
             I agree
-            <span className="font-bold">
-              <a href="#">Terms and Conditions & Private Policy </a>
-            </span>
+            <a href="#" className="font-bold">
+              Terms and Conditions & Private Policy{" "}
+            </a>
             by Signing in
           </span>
         </div>

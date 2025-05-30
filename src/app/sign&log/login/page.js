@@ -12,6 +12,7 @@ export default function Login() {
   const [isChecked, setIsChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
+
   const router = useRouter();
   const { login } = useAuth();
 
@@ -62,9 +63,8 @@ export default function Login() {
           />
           <h2 className="font-bold text-[37px]">Sign In</h2>
           <div className="relative">
-            <span>
-              <FaUserAlt className="absolute top-2 left-2 pointer-events-none" />
-            </span>
+            <FaUserAlt className="absolute top-2 left-2 pointer-events-none" />
+
             <input
               type="text"
               placeholder="Username"
@@ -74,9 +74,8 @@ export default function Login() {
             />
           </div>
           <div className="relative w-full">
-            <span>
-              <RiLockPasswordFill className="absolute top-2 left-2 pointer-events-none" />
-            </span>
+            <RiLockPasswordFill className="absolute top-2 left-2 pointer-events-none" />
+
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
@@ -84,19 +83,18 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className=" border-2 rounded-md px-7 py-1 w-full"
             />
-            <span>
-              {showPassword ? (
-                <FaEye
-                  className="absolute top-2 right-2 cursor-pointer"
-                  onClick={() => setShowPassword(false)}
-                />
-              ) : (
-                <FaEyeSlash
-                  className="absolute top-2 right-2 cursor-pointer"
-                  onClick={() => setShowPassword(true)}
-                />
-              )}
-            </span>
+
+            {showPassword ? (
+              <FaEye
+                className="absolute top-2 right-2 cursor-pointer"
+                onClick={() => setShowPassword(false)}
+              />
+            ) : (
+              <FaEyeSlash
+                className="absolute top-2 right-2 cursor-pointer"
+                onClick={() => setShowPassword(true)}
+              />
+            )}
           </div>
           <div>
             <input
@@ -107,9 +105,9 @@ export default function Login() {
             />
             <span className="text-[16px]">
               I agree
-              <span className="font-bold">
-                <a href="#">Terms and Conditions & Private Policy </a>
-              </span>
+              <a className="font-bold" href="#">
+                Terms and Conditions & Private Policy{" "}
+              </a>
               by Signing in
             </span>
           </div>

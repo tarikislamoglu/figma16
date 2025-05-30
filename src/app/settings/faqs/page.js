@@ -29,7 +29,7 @@ export default function FAQ() {
   return (
     <div
       className={`flex flex-col md:flex-row w-full  min-h-screen ${
-        isDark ? "bg-gray-700 " : "bg-[#E8F3FC] "
+        isDark ? "bg-gray-500 " : "bg-[#E8F3FC] "
       }`}
     >
       <SideBar />

@@ -54,109 +54,109 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen max-w-full relative">
+    <div className="flex flex-col min-h-screen max-w-full relative overflow-hidden">
       <img
         src="/Mask group2.png"
         alt=""
-        className="bottom-0 absolute h-5/6 w-full"
+        className="w-full h-full object-cover absolute bottom-0"
       />
-      <div className="flex items-center absolute top-0 left-5 space-x-2">
+      <div className="flex items-center p-4 space-x-2 z-10 bg-[#E8F3FC]">
         <img src="/logo.png" className="w-12 h-12" />
-        <h1 className="font-bold text-[55px]  bg-gradient-to-r from-[#807DFF] via-[#5C4687] to-[#00FFA3] bg-clip-text text-transparent ">
+        <h1 className="font-bold text-[55px] md:text-[40px] sm:text-[30px] bg-gradient-to-r from-[#807DFF] via-[#5C4687] to-[#00FFA3] bg-clip-text text-transparent">
           EcoGuard
         </h1>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col p-8 lg:w-1/3 md:1/2 w-2/3 space-y-5 justify-center absolute bg-[#434343E5] text-white opacity-90 rounded-md"
-      >
-        <h2 className="font-bold text-[37px] ">Sign Up</h2>
-        <div className="relative">
-          <FaUserAlt className="absolute top-2 left-2 pointer-events-none" />
-
-          <input
-            type="text"
-            placeholder="Username"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            required
-            ref={userNameRef}
-            className=" border-2 rounded-md px-7 py-1 w-full"
-          />
-        </div>
-        <div className="relative">
-          <IoMdMail className=" absolute top-2 left-2 pointer-events-none" />
-
-          <input
-            type="email"
-            placeholder="Email"
-            value={emailAddress}
-            onChange={(e) => setEmailAddress(e.target.value)}
-            required
-            className=" border-2 rounded-md px-7 py-1 w-full"
-          />
-        </div>
-        <div className="relative">
-          <FaPhoneAlt className=" absolute top-2 left-2 pointer-events-none" />
-
-          <input
-            type="tel"
-            placeholder="Phone Number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
-            className="border-2 rounded-md px-7 py-1 w-full"
-          />
-        </div>
-        <div className="relative w-full">
-          <RiLockPasswordFill className="  absolute top-2 left-2 pointer-events-none" />
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className=" border-2  rounded-md px-7 py-1 w-full"
-          />
-
-          {showPassword ? (
-            <FaEye
-              className=" absolute top-2 right-2 cursor-pointer"
-              onClick={() => setShowPassword(false)}
-            />
-          ) : (
-            <FaEyeSlash
-              className="  absolute top-2 right-2 cursor-pointer"
-              onClick={() => setShowPassword(true)}
-            />
-          )}
-        </div>
-        <div className="">
-          <input
-            type="checkbox"
-            className="mr-2"
-            required
-            checked={isChecked}
-            onChange={() => setIsChecked((prev) => !prev)}
-          />
-          <span className="text-[16px]">
-            I agree
-            <a href="#" className="font-bold">
-              Terms and Conditions & Private Policy{" "}
-            </a>
-            by Signing in
-          </span>
-        </div>
-        <div className="flex flex-col space-y-5 px-4 pt-16">
-          <button
-            type="submit"
-            className="bg-white text-[#0068C8] font-bold text-[27px] rounded-md p-0.5 cursor-pointer"
-          >
+      <div className="flex-1 flex items-center justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col p-8 lg:w-1/3 md:w-1/2 w-[90%] max-w-[500px] space-y-5 justify-center bg-[#434343E5] text-white opacity-90 rounded-md z-10 my-8"
+        >
+          <h2 className="font-bold text-[37px] md:text-[30px] text-center">
             Sign Up
-          </button>
-        </div>
-        {error && <p className="text-red-500">{error}</p>}
-      </form>
+          </h2>
+          <div className="relative w-full">
+            <FaUserAlt className="absolute top-2 left-2 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Username"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              required
+              ref={userNameRef}
+              className="border-2 rounded-md px-7 py-2 w-full"
+            />
+          </div>
+          <div className="relative w-full">
+            <IoMdMail className="absolute top-2 left-2 pointer-events-none" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={emailAddress}
+              onChange={(e) => setEmailAddress(e.target.value)}
+              required
+              className="border-2 rounded-md px-7 py-2 w-full"
+            />
+          </div>
+          <div className="relative w-full">
+            <FaPhoneAlt className="absolute top-2 left-2 pointer-events-none" />
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              required
+              className="border-2 rounded-md px-7 py-2 w-full"
+            />
+          </div>
+          <div className="relative w-full">
+            <RiLockPasswordFill className="absolute top-2 left-2 pointer-events-none" />
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="border-2 rounded-md px-7 py-2 w-full"
+            />
+            {showPassword ? (
+              <FaEye
+                className="absolute top-2 right-2 cursor-pointer"
+                onClick={() => setShowPassword(false)}
+              />
+            ) : (
+              <FaEyeSlash
+                className="absolute top-2 right-2 cursor-pointer"
+                onClick={() => setShowPassword(true)}
+              />
+            )}
+          </div>
+          <div className="w-full">
+            <input
+              type="checkbox"
+              className="mr-2"
+              required
+              checked={isChecked}
+              onChange={() => setIsChecked((prev) => !prev)}
+            />
+            <span className="text-[16px] md:text-[14px]">
+              I agree
+              <a href="#" className="font-bold">
+                Terms and Conditions & Private Policy{" "}
+              </a>
+              by Signing in
+            </span>
+          </div>
+          <div className="flex flex-col space-y-5 w-full">
+            <button
+              type="submit"
+              className="bg-white text-[#0068C8] font-bold text-[27px] md:text-[22px] rounded-md py-2 cursor-pointer w-full hover:bg-gray-100 transition-colors"
+            >
+              Sign Up
+            </button>
+          </div>
+          {error && <p className="text-red-500 text-center w-full">{error}</p>}
+        </form>
+      </div>
     </div>
   );
 };
